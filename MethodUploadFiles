@@ -1,0 +1,24 @@
+<?php
+      //Função para Fazer Upload de Imagem
+			//---------------------------------------------------------------------	
+			$imagem = $_FILES['foto']['name'];
+			$temporario = $_FILES['foto']['tmp_name'];
+            $tipo = $_FILES['foto']['type'];
+
+            $extensoesAceitas = ['png','jpeg','jpg'];
+            $extensao = pathinfo($imagem, PATHINFO_EXTENSION);
+
+            if(in_array($extensao,$extensoesAceitas)){
+                
+                $nomeImagem = uniqid().'.'.$extensao;
+                $sURL = 'public/images/produtos/';
+				        $cImagem = ($sURL.$nomeImagem);
+                
+                if(move_uploaded_file($temporario, $sURL.$nomeImagem)){
+                    echo '<script>alert("Upload Efetuado com sucesso");</script>';
+                }else{
+                    echo 'upload com problemas';
+                }
+            }
+			//---------------------------------------------------------------------
+ ?>
